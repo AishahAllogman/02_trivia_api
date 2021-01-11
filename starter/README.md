@@ -25,56 +25,48 @@ npm start
 Installing Dependencies
 Python 3.7
 Follow instructions to install the latest version of python for your platform in the python docs
-# Virtual Enviornment
-We recommend working within a virtual environment whenever using Python for projects. This keeps your dependencies for each project separate and organaized. Instructions for setting up a virual enviornment for your platform can be found  in the python docs
-# PIP Dependencies
+Virtual Enviornment
+We recommend working within a virtual environment whenever using Python for projects. This keeps your dependencies for each project separate and organaized. Instructions for setting up a virual enviornment for your platform can be found in the python docs
+PIP Dependencies
 Once you have your virtual environment setup and running, install dependencies by naviging to the /backend directory and running:
-```
 pip install -r requirements.txt
-```
 This will install all of the required packages we selected within the requirements.txt file.
-# Key Dependencies
--	Flask is a lightweight backend microservices framework. Flask is required to handle requests and responses.
--	SQLAlchemy is the Python SQL toolkit and ORM we'll use handle the lightweight sqlite database. You'll primarily work in app.py and can reference models.py.
-- Flask-CORS is the extension we'll use to handle cross origin requests from our frontend server.
-## Database Setup
+Key Dependencies
+•	Flask is a lightweight backend microservices framework. Flask is required to handle requests and responses.
+•	SQLAlchemy is the Python SQL toolkit and ORM we'll use handle the lightweight sqlite database. You'll primarily work in app.py and can reference models.py.
+•	Flask-CORS is the extension we'll use to handle cross origin requests from our frontend server.
+Database Setup
 With Postgres running, restore a database using the trivia.psql file provided. From the backend folder in terminal run:
-```
 psql trivia < trivia.psql
-```
-## Running the server
+Running the server
 From within the backend directory first ensure you are working using your created virtual environment.
 To run the server, execute:
-```
 export FLASK_APP=flaskr
 export FLASK_ENV=development
 flask run
-```
 
-### API Reference 
 
-##	Getting Started
--	Base URL: Currently this application is only hosted locally. The backend is hosted at http://127.0.0.1:5000/
--	Authentication: This version does not require authentication or API keys.
-# Errors
+## API Reference 
+
+•	Getting Started
+•	Base URL: Currently this application is only hosted locally. The backend is hosted at http://127.0.0.1:5000/
+•	Authentication: This version does not require authentication or API keys.
+•	Errors
 Errors are returned as JSON objects in the following format:
-```
 {
     "success": False, 
     "error": 400,
     "message": "bad request"
 }
-```
 The API will return three error types when requests fail:
 •	400: Bad Request
 •	404: Resource Not Found
 •	422: Not Processable
 
-## GET /categories
-# General:
-- Returns a list of category objects, success value
--	Sample: curl http://127.0.0.1:5000/ categories 
-```
+GET /categories
+•	General:
+	Returns a list of category objects, success value
+•	Sample: curl http://127.0.0.1:5000/ categories 
 {
   "categories": {
     "1": "Science", 
@@ -86,13 +78,12 @@ The API will return three error types when requests fail:
   }, 
   "success": true
 }
-```
-## GET /questions
-#	General:
--	Returns a list of question objects, success value, and total number of question, general categroy
--	Results are paginated in groups of 10. Include a request argument to choose page number, starting from 1.
--	Sample: $ curl  http://127.0.0.1:5000/questions
-```
+
+GET /questions
+•	General:
+	Returns a list of question objects, success value, and total number of question, general categroy
+	Results are paginated in groups of 10. Include a request argument to choose page number, starting from 1.
+•	Sample: $ curl  http://127.0.0.1:5000/questions
 {
   "categories": {
     "1": "Science", 
@@ -178,24 +169,21 @@ The API will return three error types when requests fail:
   "success": true, 
   "total_questions": 21
 }
-```
-## DELETE /questions/{question_id}
-#	General:
--	Deletes the question of the given  ID if it exists. Returns the json object ( id of the deleted question, success value, total question )
--	Sample : $ curl -X DELETE  http://127.0.0.1:5000/questions/26
-```
+
+DELETE /questions/{question_id}
+•	General:
+	Deletes the question of the given  ID if it exists. Returns the json object ( id of the deleted question, success value, total question )
+•	Sample : $ curl -X DELETE  http://127.0.0.1:5000/questions/26
 {
   "deleted": 26, 
   "success": true, 
   "total_question": 20
 }
-```
-## POST /questions
-# General:
-- Creates a new question using the submitted json parameter ( question, answer,category, and difficulty)
-- Returns the json object (id of the created question , success value, total question , and questions  list based on current page number to update the frontend.)
-- Sample : $ curl http://127.0.0.1:5000/questions -X POST -H "Content-Type:application/json" -d '{"question":"what is national fruit in Saudi Arabia?", "answer":"date","categroy":3,"difficulty":1}'
-```
+POST /questions
+•	General:
+Creates a new question using the submitted json parameter ( question, answer,category, and difficulty)
+. Returns the json object (id of the created question , success value, total question , and questions  list based on current page number to update the frontend.)
+ Sample : $ curl http://127.0.0.1:5000/questions -X POST -H "Content-Type:application/json" -d '{"question":"what is national fruit in Saudi Arabia?", "answer":"date","categroy":3,"difficulty":1}'
 {
   "created": 35, 
   "question": [
@@ -271,17 +259,15 @@ The API will return three error types when requests fail:
     }
   ], 
   "success": true, 
-```  
+  
 
-## POST /search/questions
-#	General:
-- Search question with term word as json request parameter 
+POST /search/questions
+•	General:
+•	Search question with term word as json request parameter 
 
--	Returns the json object with (questions ,success value, total number for question in search.)
+•	Returns the json object with (questions ,success value, total number for question in search.)
 
--	Sample: curl  http://127.0.0.1:5000/search/questions -X POST -H "Content-Type:application/json" -d '
-```
-{"searchTerm":"what"}'
+•	Sample: curl  http://127.0.0.1:5000/search/questions -X POST -H "Content-Type:application/json" -d '{"searchTerm":"what"}'
 
 {
   "questions": [
@@ -352,15 +338,14 @@ The API will return three error types when requests fail:
   "success": true, 
   "total_questions": 9
 }
-```
-## Get  /categories/{category_id}/questions
 
--	General : 
+Get  /categories/{category_id}/questions
+
+•	General : 
    Get question by category  request parameter  (  category_id)
-   Return json object with category id, success values ,question , number of question 
+Return json object with category id, success values ,question , number of question 
 
--	Sample :  curl  http://127.0.0.1:5000/categories/2/questions
-```
+•	Sample :  curl  http://127.0.0.1:5000/categories/2/questions
 "categories": 2, 
   "questions": [
     {
@@ -402,13 +387,11 @@ The API will return three error types when requests fail:
   "success": true, 
   "total_questions": 5
 }
-```
-## Post/quizzes
+Post/quizzes
 Allow user to play games  with random question on selected category 
- -	Request parameter is : previous_questions, quiz_category
- -	Returns JSON object with random question
-Sample : curl  http://127.0.0.1:5000/quizzes -X POST -H "Content-Type:application/json" -d '{"previous_questions": [],"quiz_category": {"type": "History", "id": 4}}'
-```
+•	Request parameter is : previous_questions, quiz_category
+•	Returns JSON object with random question
+	Sample : curl  http://127.0.0.1:5000/quizzes -X POST -H "Content-Type:application/json" -d '{"previous_questions": [],"quiz_category": {"type": "History", "id": 4}}'
 {
   "categories": {
     "id": 4, 
@@ -423,8 +406,8 @@ Sample : curl  http://127.0.0.1:5000/quizzes -X POST -H "Content-Type:applicatio
   }, 
   "success": true
 }
-```
-#### Testing
+
+## Testing
 To run the tests, run
 ```
 dropdb trivia_test
