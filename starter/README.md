@@ -387,11 +387,12 @@ Return json object with category id, success values ,question , number of questi
   "success": true, 
   "total_questions": 5
 }
-Post/quizzes
+## Post/quizzes
 Allow user to play games  with random question on selected category 
-•	Request parameter is : previous_questions, quiz_category
-•	Returns JSON object with random question
-	Sample : curl  http://127.0.0.1:5000/quizzes -X POST -H "Content-Type:application/json" -d '{"previous_questions": [],"quiz_category": {"type": "History", "id": 4}}'
+ -	Request parameter is : previous_questions, quiz_category
+ -	Returns JSON object with random question
+-Sample : curl  http://127.0.0.1:5000/quizzes -X POST -H "Content-Type:application/json" -d '{"previous_questions": [],"quiz_category": {"type": "History", "id": 4}}'
+```
 {
   "categories": {
     "id": 4, 
@@ -406,8 +407,8 @@ Allow user to play games  with random question on selected category
   }, 
   "success": true
 }
-
-## Testing
+```
+#####Testing
 To run the tests, run
 ```
 dropdb trivia_test
