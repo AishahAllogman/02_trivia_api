@@ -40,7 +40,6 @@ class TriviaTestCase(unittest.TestCase):
     TODO
     Write at least one test for each test for successful operation and for expected errors.
     """
-    # Teset : to retrieve_cotagrey   
     def test_reteirve_categories(self):
         res = self.client().get('/categories')
         data = json.loads(res.data)
@@ -73,11 +72,11 @@ class TriviaTestCase(unittest.TestCase):
         self.assertEqual(data['message'],'resource not found')
     #to deleete question
     def test_delete_question(self):
-       res = self.client().delete('/questions/34')
+       res = self.client().delete('/questions/15')
        data = json.loads(res.data)
        self.assertEqual(res.status_code, 200)
        self.assertEqual(data['success'], True)
-       self.assertEqual(data['deleted'], 34)
+       self.assertEqual(data['deleted'], 15)
        #self.assertTrue(data['total_question'])
        #self.assertEqual(question, None)
 
@@ -136,16 +135,23 @@ class TriviaTestCase(unittest.TestCase):
         data = json.loads(res.data)
         self.assertEqual(res.status_code, 200)
         self.assertEqual(data['success'], True)
+    # Teset : Quizz
+    def test_quizzes(self):
+        request_data= {'previous_questions': [1, 2],
+            'quiz_category': {'id': 2, 'type': 'Art'}}
+        res = self.client().post('/quizzes',data=json.dumps(request_data),content_type='application/json')                      
+        data = json.loads(res.data)
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(data['success'], True)
 
     def test_400_if_test_quizzes(self):
-        request_data= {'previous_questions': [],
-            'quiz_category':{'id':0 ,'type': ''}}
-        
-        res = self.client().post('/quizzes',data=request_data,content_type='application/json')         
+        request_data= {}
+        res = self.client().post('/quizzes') 
+        print (res.status_code)        
         data = json.loads(res.data)
-        self.assertEqual(res.status_code, 400)
+        self.assertEqual(res.status_code, 422)
         self.assertEqual(data['success'], False)
-        self.assertEqual(data['message'], 'bad request')
+        self.assertEqual(data['message'], 'unprocessable')
         
     
           
